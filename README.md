@@ -1,4 +1,4 @@
-# NextAuth.js TypeScript <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" height="24" alt="TypeScript logo"/> Example
+# NextAuth.js TypeScript <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" width="40" height="24" alt="TypeScript logo"/> Example
 
 [Live Demo](https://next-auth-typescript-example.now.sh)
 
