@@ -1,20 +1,22 @@
-# NextAuth.js Example
+# NextAuth.js TypeScript <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" height="24" alt="TypeScript logo"/> Example
 
-[next-auth-example.now.sh](https://next-auth-example.now.sh)
+[Live Demo](https://next-auth-typescript-example.now.sh)
 
-## About this project
+## About this project 💭
 
-This is an example of how to use [NextAuth.js](https://next-auth.js.org) library to add authentication to a [Next.js](https://nextjs.org) application.
+This is an example of how to use the [NextAuth.js](https://next-auth.js.org) library to add authentication to a [Next.js](https://nextjs.org) application with Typescript.
 
-## About NextAuth.js
+Check out also the TypeScript [documentation page](https://next-auth.js.org/getting-started/typescript).
+
+## About NextAuth.js 🔐
 
 NextAuth.js is an easy to implement, full-stack (client/server) open source authentication library designed for [Next.js](https://nextjs.org) and [Serverless](https://now.sh).
 
 Go to [next-auth.js.org](https://next-auth.js.org) for more information and documentation.
 
-*NextAuth.js is not associated with Vercel or Next.js.*
+_NextAuth.js is not associated with Vercel or Next.js._
 
-## Getting started
+## Getting started 🥤
 
 ### 1. Clone the repository and install dependancies
 
@@ -42,56 +44,43 @@ You can skip configuring a database and come back to it later if you want.
 
 When configuring your database you should also install an appropriate node_module.
 
-* **SQLite**
+- **SQLite**
 
-  Install module:
-  `npm i sqlite3`
+  - Install module: `npm i sqlite3`
+  - Database URI: `sqlite://localhost/:memory:?synchronize=true`
 
-  Database URI:
-  `sqlite://localhost/:memory:?synchronize=true`
+- **MySQL**
 
-* **MySQL**
+  - Install module: `npm i mysql`
+  - Database URI: `mysql://username:password@127.0.0.1:3306/database_name?synchronize=true`
 
-  Install module:
-  `npm i mysql`
+- **Postgres**
 
-  Database URI:
-  `mysql://username:password@127.0.0.1:3306/database_name?synchronize=true`
+  - Install module: `npm i pg`
+  - Database URI: `postgres://username:password@127.0.0.1:5432/database_name?synchronize=true`
 
-* **Postgres**
+- **MongoDB**
+  - Install module: `npm i mongodb`
+  - Database URI: `mongodb://username:password@127.0.0.1:27017/database_name?synchronize=true`
 
-  Install module:
-  `npm i pg`
+Notes ✏️
 
-  Database URI:
-  `postgres://username:password@127.0.0.1:5432/database_name?synchronize=true`
-
-* **MongoDB**
-
-  Install module:
-  `npm i mongodb`
-
-  Database URI:
-  `mongodb://username:password@127.0.0.1:27017/database_name?synchronize=true`
-
-Notes:
-
-* The example .env specifies an in-memory SQLite database that does not persist data.
-* SQLite is suitable for development / testing but not for production.
-* The option `?synchronize=true` automatically syncs schema changes to the database. It should not be used in production as may result in data loss if there are changes to the schema or to NextAuth.js
-* You can also specify a [TypeORM connection object](https://typeorm.io/#/connection-options) in `pages/api/auth/[...nextauth].js` instead of a database URL / connection string.
+- The example .env specifies an in-memory SQLite database that does not persist data.
+- SQLite is suitable for development / testing but not for production.
+- The option `?synchronize=true` automatically syncs schema changes to the database. It should not be used in production as may result in data loss if there are changes to the schema or to NextAuth.js
+- You can also specify a [TypeORM connection object](https://typeorm.io/#/connection-options) in `pages/api/auth/[...nextauth].js` instead of a database URL / connection string.
 
 ### 3. Configure authentication providers
 
-* Review and update options in `pages/api/auth/[...nextauth].js` as needed.
+- Review and update options in `pages/api/auth/[...nextauth].js` as needed.
 
-* When setting up OAuth, in the developer admin page for each of your OAuth services, you should configure the callback URL to use a callback path of `{server}/api/auth/callback/{provider}`.
+- When setting up OAuth, in the developer admin page for each of your OAuth services, you should configure the callback URL to use a callback path of `{server}/api/auth/callback/{provider}`.
 
   e.g. For Google OAuth you would use: `http://localhost:3000/api/auth/callback/google`
 
   A list of configured providers and their callback URLs is available from the endpoint `/api/auth/providers`. You can find more information at https://next-auth.js.org/configuration/providers
 
-* You can also choose to specify an SMTP server for passwordless sign in via email.
+- You can also choose to specify an **SMTP server** for passwordless sign in via email.
 
 ### 4. Start the application
 
@@ -110,7 +99,7 @@ npm start
 
 ### 5. Configuring for production
 
-You must set the NEXTAUTH_URL environment variable with the URL of your site, before deploying to production.
+You must set the `NEXTAUTH_URL` environment variable with the URL of your site, before deploying to production.
 
 e.g. `NEXTAUTH_URL=https://example.com`
 
@@ -119,4 +108,3 @@ To do this in on Vercel, you can use the [Vercel project dashboard](https://verc
     vc env add NEXTAUTH_URL production
 
 Be sure to also set environment variables for the Client ID and Client Secret values for all your authentication providers.
-
