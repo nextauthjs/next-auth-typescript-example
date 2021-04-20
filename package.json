@@ -1,13 +1,13 @@
 {
-  "name": "next-auth-example",
+  "name": "next-auth-typescript-example",
   "version": "0.0.0",
   "private": true,
-  "description": "An example project for NextAuth.js",
-  "repository": "https://github.com/nextauthjs/next-auth-example.git",
+  "description": "An example project for NextAuth.js using Typescript",
+  "repository": "https://github.com/nextauthjs/next-auth-typescript-example.git",
   "bugs": {
     "url": "https://github.com/nextauthjs/next-auth/issues"
   },
-  "homepage": "http://next-auth-example.now.sh",
+  "homepage": "http://next-auth-typescript-example.now.sh",
   "main": "",
   "scripts": {
     "dev": "next",
@@ -15,21 +15,21 @@
     "start": "next start",
     "types": "tsc --noEmit"
   },
-  "author": "Iain Collins <me@iaincollins.com>",
+  "author": "Lluis Agusti <lluis@hey.com>",
   "contributors": [
     "Balázs Orbán <info@balazsorban.com>",
-    "Lluis Agusti <lluis@hey.com>"
+    "Iain Collins <me@iaincollins.com>"
   ],
   "license": "ISC",
+  "prettier": {
+    "semi": false
+  },
   "dependencies": {
     "next": "^10.0.7",
     "next-auth": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "sqlite3": "^5.0.2"
-  },
-  "prettier": {
-    "semi": false
   },
   "devDependencies": {
     "@types/node": "^14.14.41",
