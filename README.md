@@ -1,29 +1,47 @@
-# NextAuth.js TypeScript <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" width="40" height="24" alt="TypeScript logo"/> Example
+<p align="center">
+   <br/>
+   <a href="https://next-auth.js.org" target="_blank"><img width="150px" src="https://next-auth.js.org/img/logo/logo-sm.png" /></a>
+   <h3 align="center">NextAuth.js Typescript  <img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Typescript_logo_2020.svg" width="40" height="24" alt="TypeScript logo"/> Example App</h3>
+   <p align="center">
+   Open Source. Full Stack. Own Your Data.
+   </p>
+   <p align="center" style="align: center;">
+      <a href="https://npm.im/next-auth">
+        <img alt="npm" src="https://img.shields.io/npm/v/next-auth?color=green&label=next-auth">
+      </a>
+      <a href="https://bundlephobia.com/result?p=next-auth-example">
+        <img src="https://img.shields.io/bundlephobia/minzip/next-auth?label=next-auth" alt="Bundle Size"/>
+      </a>
+      <a href="https://www.npmtrends.com/next-auth">
+        <img src="https://img.shields.io/npm/dm/next-auth?label=next-auth%20downloads" alt="Downloads" />
+      </a>
+   </p>
+</p>
 
-[Live Demo](https://next-auth-typescript-example.now.sh)
-
-## About this project 💭
+## Overview
 
 This is an example of how to use the [NextAuth.js](https://next-auth.js.org) library to add authentication to a [Next.js](https://nextjs.org) application with Typescript.
 
-Check out also the TypeScript [documentation page](https://next-auth.js.org/getting-started/typescript).
+Check out also the TypeScript [documentation](https://next-auth.js.org/getting-started/typescript).
 
-## About NextAuth.js 🔐
+Demo: [`next-auth-typescript-example.vercel.app`](https://next-auth-typescript-example.vercel.app)
 
-NextAuth.js is an easy to implement, full-stack (client/server) open source authentication library designed for [Next.js](https://nextjs.org) and [Serverless](https://now.sh).
+## About NextAuth.js
+
+NextAuth.js is an easy to implement, full-stack (client/server) open source authentication library designed for [Next.js](https://nextjs.org) and [Serverless](https://vercel.com).
 
 Go to [next-auth.js.org](https://next-auth.js.org) for more information and documentation.
 
-_NextAuth.js is not associated with Vercel or Next.js._
+> *NextAuth.js is not associated with Vercel or Next.js.*
 
-## Getting started 🥤
+## Getting Started
 
 ### 1. Clone the repository and install dependancies
 
 ```
 git clone https://github.com/nextauthjs/next-auth-example.git
 cd next-auth-example
-npm i
+npm install
 ```
 
 ### 2. Configure your local environment
@@ -36,41 +54,18 @@ cp .env.local.example .env.local
 
 Add details for one or more providers (e.g. Google, Twitter, GitHub, Email, etc).
 
-#### Database configuration
+#### Database
 
-A database is needed to persist user accounts and to support email sign in, but you can still use NextAuth.js for authentication without one by using OAuth for authentication. If you do not specify a database, JSON Web Tokens will be enabled by default.
+A database is needed to persist user accounts and to support email sign in. However, you can still use NextAuth.js for authentication without a database by using OAuth for authentication. If you do not specify a database, [JSON Web Tokens](https://jwt.io/introduction) will be enabled by default.
 
-You can skip configuring a database and come back to it later if you want.
+You **can** skip configuring a database and come back to it later if you want.
 
-When configuring your database you should also install an appropriate node_module.
+For more information about setting up a database, please check out the following links:
 
-- **SQLite**
+* Docs: [next-auth.js.org/adapters/overview](https://next-auth.js.org/adapters/overview)
+* Adapters Repo: [nextauthjs/adapters](https://github.com/nextauthjs/adapters)
 
-  - Install module: `npm i sqlite3`
-  - Database URI: `sqlite://localhost/:memory:?synchronize=true`
-
-- **MySQL**
-
-  - Install module: `npm i mysql`
-  - Database URI: `mysql://username:password@127.0.0.1:3306/database_name?synchronize=true`
-
-- **Postgres**
-
-  - Install module: `npm i pg`
-  - Database URI: `postgres://username:password@127.0.0.1:5432/database_name?synchronize=true`
-
-- **MongoDB**
-  - Install module: `npm i mongodb`
-  - Database URI: `mongodb://username:password@127.0.0.1:27017/database_name?synchronize=true`
-
-Notes ✏️
-
-- The example .env specifies an in-memory SQLite database that does not persist data.
-- SQLite is suitable for development / testing but not for production.
-- The option `?synchronize=true` automatically syncs schema changes to the database. It should not be used in production as may result in data loss if there are changes to the schema or to NextAuth.js
-- You can also specify a [TypeORM connection object](https://typeorm.io/#/connection-options) in `pages/api/auth/[...nextauth].js` instead of a database URL / connection string.
-
-### 3. Configure authentication providers
+### 3. Configure Authentication Providers
 
 - Review and update options in `pages/api/auth/[...nextauth].js` as needed.
 
@@ -97,14 +92,27 @@ npm build
 npm start
 ```
 
-### 5. Configuring for production
+### 5. Preparing for Production
 
 You must set the `NEXTAUTH_URL` environment variable with the URL of your site, before deploying to production.
 
-e.g. `NEXTAUTH_URL=https://example.com`
+e.g.  in your `.env.local` file - `NEXTAUTH_URL=https://example.com`
 
-To do this in on Vercel, you can use the [Vercel project dashboard](https://vercel.com/dashboard) or the `vc env` command:
+To do this with Vercel, you can use the [Vercel project dashboard](https://vercel.com/dashboard) or their cli with the `vc env` command:
 
-    vc env add NEXTAUTH_URL production
+```
+vc env add NEXTAUTH_URL production
+```
 
-Be sure to also set environment variables for the Client ID and Client Secret values for all your authentication providers.
+Do not forget to set the environment variables for the Client ID and Client Secret values for all your configured authentication providers in your hosting providers dashboard, i.e. with Vercel as described above.
+
+## Acknowledgements
+
+<a href="https://vercel.com?utm_source=nextauthjs&utm_campaign=oss">
+<img width="170px" src="https://raw.githubusercontent.com/nextauthjs/next-auth/canary/www/static/img/powered-by-vercel.svg" alt="Powered By Vercel" />
+</a>
+<p align="left">Thanks to Vercel sponsoring this project by allowing it to be deployed for free for the entire NextAuth.js Team</p>
+
+## License
+
+ISC
