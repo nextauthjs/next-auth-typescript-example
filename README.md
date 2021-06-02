@@ -22,11 +22,11 @@
 
 This is an example of how to use the [NextAuth.js](https://next-auth.js.org) library to add authentication to a [Next.js](https://nextjs.org) application with Typescript.
 
-Check out also the TypeScript [documentation](https://next-auth.js.org/getting-started/typescript).
+Check out the TypeScript [documentation](https://next-auth.js.org/getting-started/typescript).
 
-Demo: [`next-auth-typescript-example.vercel.app`](https://next-auth-typescript-example.vercel.app)
+This example application can be found under [`next-auth-typescript-example.vercel.app`](https://next-auth-typescript-example.vercel.app)
 
-## About NextAuth.js
+### About NextAuth.js
 
 NextAuth.js is an easy to implement, full-stack (client/server) open source authentication library designed for [Next.js](https://nextjs.org) and [Serverless](https://vercel.com).
 
