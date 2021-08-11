@@ -18,7 +18,8 @@
   "author": "Lluis Agusti <lluis@hey.com>",
   "contributors": [
     "Balázs Orbán <info@balazsorban.com>",
-    "Iain Collins <me@iaincollins.com>"
+    "Iain Collins <me@iaincollins.com>",
+    "Nico Domino <yo@ndo.dev>"
   ],
   "license": "ISC",
   "prettier": {
