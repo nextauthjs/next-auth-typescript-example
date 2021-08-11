@@ -1,16 +1,22 @@
 import NextAuth from "next-auth"
-import Providers from "next-auth/providers"
+import EmailProvider from "next-auth/providers/email"
+import AppleProvider from "next-auth/providers/apple"
+import Auth0Provider from "next-auth/providers/auth0"
+import FacebookProvider from "next-auth/providers/facebook"
+import GithubProvider from "next-auth/providers/github"
+import GoogleProvider from "next-auth/providers/google"
+import TwitterProvider from "next-auth/providers/twitter"
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
 export default NextAuth({
   // https://next-auth.js.org/configuration/providers
   providers: [
-    Providers.Email({
+    EmailProvider({
       server: process.env.EMAIL_SERVER,
       from: process.env.EMAIL_FROM,
     }),
-    Providers.Apple({
+    AppleProvider({
       clientId: process.env.APPLE_ID,
       clientSecret: {
         appleId: process.env.APPLE_ID,
@@ -19,26 +25,26 @@ export default NextAuth({
         keyId: process.env.APPLE_KEY_ID,
       },
     }),
-    Providers.Auth0({
+    Auth0Provider({
       clientId: process.env.AUTH0_ID,
       clientSecret: process.env.AUTH0_SECRET,
       domain: process.env.AUTH0_DOMAIN,
     }),
-    Providers.Facebook({
+    FacebookProvider({
       clientId: process.env.FACEBOOK_ID,
       clientSecret: process.env.FACEBOOK_SECRET,
     }),
-    Providers.GitHub({
+    GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
       // https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
       scope: "read:user",
     }),
-    Providers.Google({
+    GoogleProvider({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_SECRET,
     }),
-    Providers.Twitter({
+    TwitterProvider({
       clientId: process.env.TWITTER_ID,
       clientSecret: process.env.TWITTER_SECRET,
     }),
