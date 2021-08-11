@@ -5,7 +5,7 @@ import AccessDenied from '../components/access-denied'
 
 export default function Page () {
   const { data: session, status } = useSession()
-	const loading = status === 'loading'
+  const loading = status === 'loading'
   const [ content , setContent ] = useState()
 
   // Fetch content from protected route

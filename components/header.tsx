@@ -7,7 +7,7 @@ import styles from "./header.module.css"
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
   const { data: session, status } = useSession()
-	const loading = status === 'loading'
+  const loading = status === 'loading'
 
   return (
     <header>

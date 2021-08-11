@@ -9,7 +9,7 @@ export default function Page() {
   // This is possible because of the shared context configured in `_app.js` that
   // is used by `useSession()`.
   const { data: session, status } = useSession()
-	const loading = status === 'loading'
+  const loading = status === 'loading'
 
   return (
     <Layout>
