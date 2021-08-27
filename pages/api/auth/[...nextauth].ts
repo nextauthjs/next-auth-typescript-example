@@ -28,6 +28,7 @@ export default NextAuth({
     Auth0Provider({
       clientId: process.env.AUTH0_ID,
       clientSecret: process.env.AUTH0_SECRET,
+      // @ts-ignore
       domain: process.env.AUTH0_DOMAIN,
     }),
     FacebookProvider({
@@ -38,6 +39,7 @@ export default NextAuth({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
       // https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
+      // @ts-ignore
       scope: "read:user",
     }),
     GoogleProvider({
