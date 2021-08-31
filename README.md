@@ -9,7 +9,7 @@
       <a href="https://npm.im/next-auth">
         <img alt="npm" src="https://img.shields.io/npm/v/next-auth?color=green&label=next-auth">
       </a>
-      <a href="https://bundlephobia.com/result?p=next-auth-example">
+      <a href="https://bundlephobia.com/result?p=next-auth-typescript-example">
         <img src="https://img.shields.io/bundlephobia/minzip/next-auth?label=next-auth" alt="Bundle Size"/>
       </a>
       <a href="https://www.npmtrends.com/next-auth">
@@ -39,8 +39,8 @@ Go to [next-auth.js.org](https://next-auth.js.org) for more information and docu
 ### 1. Clone the repository and install dependancies
 
 ```
-git clone https://github.com/nextauthjs/next-auth-example.git
-cd next-auth-example
+git clone https://github.com/nextauthjs/next-auth-typescript-example.git
+cd next-auth-typescript-example
 npm install
 ```
 
