@@ -18,7 +18,8 @@
   "author": "Lluis Agusti <lluis@hey.com>",
   "contributors": [
     "Balázs Orbán <info@balazsorban.com>",
-    "Iain Collins <me@iaincollins.com>"
+    "Iain Collins <me@iaincollins.com>",
+    "Nico Domino <yo@ndo.dev>"
   ],
   "license": "ISC",
   "prettier": {
@@ -26,10 +27,10 @@
   },
   "dependencies": {
     "next": "^11.0.0",
-    "next-auth": "latest",
+    "next-auth": "^4.0.1",
+    "nodemailer": "^6.6.3",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "sqlite3": "^5.0.2"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@types/node": "^15.12.4",
