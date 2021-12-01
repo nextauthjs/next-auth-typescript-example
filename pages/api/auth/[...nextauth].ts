@@ -1,30 +1,30 @@
 import NextAuth from "next-auth"
-import EmailProvider from "next-auth/providers/email"
-import AppleProvider from "next-auth/providers/apple"
 import Auth0Provider from "next-auth/providers/auth0"
 import FacebookProvider from "next-auth/providers/facebook"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import TwitterProvider from "next-auth/providers/twitter"
+// import EmailProvider from "next-auth/providers/email"
+// import AppleProvider from "next-auth/providers/apple"
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
 export default NextAuth({
   // https://next-auth.js.org/configuration/providers
   providers: [
-    EmailProvider({
-      server: process.env.EMAIL_SERVER,
-      from: process.env.EMAIL_FROM,
-    }),
-    AppleProvider({
-      clientId: process.env.APPLE_ID,
-      clientSecret: {
-        appleId: process.env.APPLE_ID,
-        teamId: process.env.APPLE_TEAM_ID,
-        privateKey: process.env.APPLE_PRIVATE_KEY,
-        keyId: process.env.APPLE_KEY_ID,
-      },
-    }),
+    // EmailProvider({
+    //   server: process.env.EMAIL_SERVER,
+    //   from: process.env.EMAIL_FROM,
+    // }),
+    // AppleProvider({
+    //   clientId: process.env.APPLE_ID,
+    //   clientSecret: {
+    //     appleId: process.env.APPLE_ID,
+    //     teamId: process.env.APPLE_TEAM_ID,
+    //     privateKey: process.env.APPLE_PRIVATE_KEY,
+    //     keyId: process.env.APPLE_KEY_ID,
+    //   },
+    // }),
     Auth0Provider({
       clientId: process.env.AUTH0_ID,
       clientSecret: process.env.AUTH0_SECRET,
