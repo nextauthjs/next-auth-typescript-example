@@ -79,7 +79,7 @@ export default NextAuth({
     // updateAge: 24 * 60 * 60, // 24 hours
   },
 
-  // JSON Web tokens are only used for sessions if the `jwt: true` session
+  // JSON Web tokens are only used for sessions if the `strategy: 'jwt'` session
   // option is set - or by default if no database is specified.
   // https://next-auth.js.org/configuration/options#jwt
   jwt: {
