@@ -3,7 +3,6 @@ namespace NodeJS {
     EMAIL_SERVER: string
     EMAIL_FROM: string
     APPLE_ID: string
-    APPLE_ID: string
     APPLE_TEAM_ID: string
     APPLE_PRIVATE_KEY: string
     APPLE_KEY_ID: string
