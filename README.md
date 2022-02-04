@@ -18,7 +18,7 @@
    </p>
 </p>
 
-**Note**: We have migrated the primary [`nextauthjs/next-auth-example`](https://github.com/nextauthjs/next-auth-example) repository to TypeScript and will be using that as our primary example repository going forward. This repository will be deprecated and most likely archived in the future.
+### Note: We have migrated the primary [`nextauthjs/next-auth-example`](https://github.com/nextauthjs/next-auth-example) repository to TypeScript and will be using that as our primary example repository going forward. This repository will be deprecated and most likely archived in the future.
 
 ## Overview
 
