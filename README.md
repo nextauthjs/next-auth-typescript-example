@@ -18,6 +18,8 @@
    </p>
 </p>
 
+### Note: We have migrated the primary [`nextauthjs/next-auth-example`](https://github.com/nextauthjs/next-auth-example) repository to TypeScript and will be using that as our primary example repository going forward. This repository will be deprecated and most likely archived in the future.
+
 ## Overview
 
 This is an example of how to use the [NextAuth.js](https://next-auth.js.org) library to add authentication to a [Next.js](https://nextjs.org) application with Typescript.
@@ -32,7 +34,7 @@ NextAuth.js is an easy to implement, full-stack (client/server) open source auth
 
 Go to [next-auth.js.org](https://next-auth.js.org) for more information and documentation.
 
-> *NextAuth.js is not associated with Vercel or Next.js.*
+> _NextAuth.js is not associated with Vercel or Next.js._
 
 ## Getting Started
 
@@ -62,8 +64,8 @@ You **can** skip configuring a database and come back to it later if you want.
 
 For more information about setting up a database, please check out the following links:
 
-* Docs: [next-auth.js.org/adapters/overview](https://next-auth.js.org/adapters/overview)
-* Adapters Repo: [nextauthjs/adapters](https://github.com/nextauthjs/adapters)
+- Docs: [next-auth.js.org/adapters/overview](https://next-auth.js.org/adapters/overview)
+- Adapters Repo: [nextauthjs/adapters](https://github.com/nextauthjs/adapters)
 
 ### 3. Configure Authentication Providers
 
@@ -96,7 +98,7 @@ npm start
 
 You must set the `NEXTAUTH_URL` environment variable with the URL of your site, before deploying to production.
 
-e.g.  in your `.env.local` file - `NEXTAUTH_URL=https://example.com`
+e.g. in your `.env.local` file - `NEXTAUTH_URL=https://example.com`
 
 To do this with Vercel, you can use the [Vercel project dashboard](https://vercel.com/dashboard) or their cli with the `vc env` command:
 
