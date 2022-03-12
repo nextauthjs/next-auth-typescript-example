@@ -1,3 +1,5 @@
+> We have migrated the primary [`nextauthjs/next-auth-example`](https://github.com/nextauthjs/next-auth-example) repository to **TypeScript** and will be using that as our primary example repository going forward. **This repository is deprecated and will most likely archived in the future**.
+
 <p align="center">
    <br/>
    <a href="https://next-auth.js.org" target="_blank"><img width="150px" src="https://next-auth.js.org/img/logo/logo-sm.png" /></a>
@@ -17,8 +19,6 @@
       </a>
    </p>
 </p>
-
-### Note: We have migrated the primary [`nextauthjs/next-auth-example`](https://github.com/nextauthjs/next-auth-example) repository to TypeScript and will be using that as our primary example repository going forward. This repository will be deprecated and most likely archived in the future.
 
 ## Overview
 
