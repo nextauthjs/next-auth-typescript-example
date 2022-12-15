@@ -1,14 +1,17 @@
 import Link from "next/link"
-import { signIn, signOut, useSession } from "next-auth/react"
+import { getProviders, signIn, signOut, useSession } from "next-auth/react"
 import styles from "./header.module.css"
+import { useMemo } from "react"
 
 // The approach used in this component shows how to built a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
   const { data: session, status } = useSession()
-  const loading = status === 'loading'
+  const loading = status === "loading"
 
+  const providers = useMemo(async () => Object.keys(await getProviders() ?? {}), [])
+  
   return (
     <header>
       <noscript>
@@ -25,16 +28,19 @@ export default function Header() {
               <span className={styles.notSignedInText}>
                 You are not signed in
               </span>
-              <a
-                href={`/api/auth/signin`}
+              <button
                 className={styles.buttonPrimary}
                 onClick={(e) => {
                   e.preventDefault()
-                  signIn()
+                  providers.then((providerIds) =>
+                    // When only one provider is set, then signIn with it directly
+                    // instead of displaying the signIn page with multiple buttons
+                    providerIds.length === 1 ? signIn(providerIds[0]) : signIn()
+                  )
                 }}
               >
                 Sign in
-              </a>
+              </button>
             </>
           )}
           {session?.user && (
@@ -65,29 +71,19 @@ export default function Header() {
       <nav>
         <ul className={styles.navItems}>
           <li className={styles.navItem}>
-            <Link href="/">
-              Home
-            </Link>
+            <Link href="/">Home</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/client">
-              Client
-            </Link>
+            <Link href="/client">Client</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/server">
-              Server
-            </Link>
+            <Link href="/server">Server</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/protected">
-              Protected
-            </Link>
+            <Link href="/protected">Protected</Link>
           </li>
           <li className={styles.navItem}>
-            <Link href="/api-example">
-              API
-            </Link>
+            <Link href="/api-example">API</Link>
           </li>
         </ul>
       </nav>

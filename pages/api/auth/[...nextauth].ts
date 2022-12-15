@@ -1,55 +1,62 @@
+import { NextApiRequest, NextApiResponse } from "next"
 import NextAuth from "next-auth"
-import Auth0Provider from "next-auth/providers/auth0"
-import FacebookProvider from "next-auth/providers/facebook"
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
-import TwitterProvider from "next-auth/providers/twitter"
-// import EmailProvider from "next-auth/providers/email"
-// import AppleProvider from "next-auth/providers/apple"
+// import GoogleProvider from "next-auth/providers/google"
+
+const GFW_API_GATEWAY = process.env.GFW_API_GATEWAY
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
-export default NextAuth({
+
+export default async function auth(req: NextApiRequest, res: NextApiResponse) {
+
+  const callbackUrl = new URL(req.cookies["next-auth.callback-url"] ?? 'http://localhost:3000')
+
+  return await NextAuth(req, res, {
   // https://next-auth.js.org/configuration/providers
   providers: [
-    // EmailProvider({
-    //   server: process.env.EMAIL_SERVER,
-    //   from: process.env.EMAIL_FROM,
+
+    {
+      id: 'gfw',
+      name: 'GlobalFishingWatch SSO',
+      type: 'oauth',
+      clientId: 'gfw',
+      authorization: {
+        url: `${GFW_API_GATEWAY}/auth`,
+        params: { client: "gfw", callback: `${callbackUrl.protocol}//${callbackUrl.host}/api/auth/callback/gfw` },
+      },
+      idToken: true,
+      token: {
+        url: `${GFW_API_GATEWAY}/auth/token`,
+        async request(context) {
+          const access_token = req.query['access-token'] 
+          const tokenUrl = `${GFW_API_GATEWAY}/auth/token?access-token=${access_token}`
+          const response = await fetch(tokenUrl)
+          const json = await response.json()
+          const tokens = {
+            access_token: json?.token,
+            refresh_token: json?.refreshToken,
+            id_token: json?.token}
+          return { tokens }
+        }
+      },
+      userinfo: `${GFW_API_GATEWAY}/auth/me`,
+      profile(profile) {
+        console.log(profile)
+        return {
+          id: profile.data.id,
+          name: profile.data.name,
+          email: profile.data.email,
+          image: profile.data.photo,
+        }
+      },
+      // requestTokenUrl: 
+
+     },
+
+    // GoogleProvider({
+    //   clientId: process.env.GOOGLE_ID,
+    //   clientSecret: process.env.GOOGLE_SECRET,
     // }),
-    // AppleProvider({
-    //   clientId: process.env.APPLE_ID,
-    //   clientSecret: {
-    //     appleId: process.env.APPLE_ID,
-    //     teamId: process.env.APPLE_TEAM_ID,
-    //     privateKey: process.env.APPLE_PRIVATE_KEY,
-    //     keyId: process.env.APPLE_KEY_ID,
-    //   },
-    // }),
-    Auth0Provider({
-      clientId: process.env.AUTH0_ID,
-      clientSecret: process.env.AUTH0_SECRET,
-      // @ts-ignore
-      domain: process.env.AUTH0_DOMAIN,
-    }),
-    FacebookProvider({
-      clientId: process.env.FACEBOOK_ID,
-      clientSecret: process.env.FACEBOOK_SECRET,
-    }),
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-      // https://docs.github.com/en/developers/apps/building-oauth-apps/scopes-for-oauth-apps
-      // @ts-ignore
-      scope: "read:user",
-    }),
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
-    }),
-    TwitterProvider({
-      clientId: process.env.TWITTER_ID,
-      clientSecret: process.env.TWITTER_SECRET,
-    }),
   ],
   // Database optional. MySQL, Maria DB, Postgres and MongoDB are supported.
   // https://next-auth.js.org/configuration/databases
@@ -113,7 +120,27 @@ export default NextAuth({
     // async signIn({ user, account, profile, email, credentials }) { return true },
     // async redirect({ url, baseUrl }) { return baseUrl },
     // async session({ session, token, user }) { return session },
-    // async jwt({ token, user, account, profile, isNewUser }) { return token }
+
+    async jwt({token, user, account = {}, profile, isNewUser}) {
+      const result: any = token
+      
+      if (account?.provider) {
+
+        if (!result[account.provider] ) {
+          result[account.provider] = {};
+        }
+        
+        if ( account?.access_token ) {
+          result[account.provider].accessToken = account.access_token;
+        }
+        
+        if ( account?.refresh_token ) {
+          result[account.provider].refreshToken = account.refresh_token;
+        }
+      }
+
+      return result;
+    },
   },
 
   // Events are useful for logging
@@ -121,5 +148,6 @@ export default NextAuth({
   events: {},
 
   // Enable debug messages in the console if you are having problems
-  debug: false,
+  debug: true,
 })
+}

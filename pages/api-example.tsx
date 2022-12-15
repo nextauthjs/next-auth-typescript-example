@@ -12,6 +12,9 @@ export default function Page () {
       <h2>JSON Web Token</h2>
       <p>/api/examples/jwt</p>
       <iframe src="/api/examples/jwt"/>
+      <h2>GFW AUTH ME</h2>
+      <p>/api/gfw/me</p>
+      <iframe src="/api/gfw/me"/>
     </Layout>
   )
 }
