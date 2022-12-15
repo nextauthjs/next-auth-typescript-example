@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import NextAuth from "next-auth"
+import GFW from "../../../libs/gfw-client"
 // import GoogleProvider from "next-auth/providers/google"
 
 const GFW_API_GATEWAY = process.env.GFW_API_GATEWAY
@@ -28,14 +29,12 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
       token: {
         url: `${GFW_API_GATEWAY}/auth/token`,
         async request(context) {
-          const access_token = req.query['access-token'] 
-          const tokenUrl = `${GFW_API_GATEWAY}/auth/token?access-token=${access_token}`
-          const response = await fetch(tokenUrl)
-          const json = await response.json()
+          const accessToken = req.query['access-token'] 
+          const response = await GFW.getBearerToken( `${GFW_API_GATEWAY}`, `${accessToken}`)
           const tokens = {
-            access_token: json?.token,
-            refresh_token: json?.refreshToken,
-            id_token: json?.token}
+            access_token: response?.token,
+            refresh_token: response?.refreshToken,
+            id_token: response?.token}
           return { tokens }
         }
       },
