@@ -30,9 +30,9 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
         url: `${GFW_API_GATEWAY}/auth/token`,
         async request(context) {
           const accessToken = req.query['access-token'] 
-          const response = await GFW.getBearerToken( `${GFW_API_GATEWAY}`, `${accessToken}`)
+          const response = await GFW.login( `${GFW_API_GATEWAY}`, `${accessToken}`)
           const tokens = {
-            access_token: response?.token,
+            token: response?.token,
             refresh_token: response?.refreshToken,
             id_token: response?.token}
           return { tokens }
@@ -120,7 +120,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
     // async redirect({ url, baseUrl }) { return baseUrl },
     // async session({ session, token, user }) { return session },
 
-    async jwt({token, user, account = {}, profile, isNewUser}) {
+    async jwt({token, user, account = {}, profile, isNewUser}: any) {
       const result: any = token
       
       if (account?.provider) {
@@ -129,8 +129,8 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
           result[account.provider] = {};
         }
         
-        if ( account?.access_token ) {
-          result[account.provider].accessToken = account.access_token;
+        if ( account?.token ) {
+          result[account.provider].bearerToken = account.token;
         }
         
         if ( account?.refresh_token ) {

@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import { getToken, JWT } from "next-auth/jwt"
+import GFW from "../../../libs/gfw-client"
 
-const GFW_API_GATEWAY = process.env.GFW_API_GATEWAY
+const GFW_API_GATEWAY = process.env.GFW_API_GATEWAY ?? ""
 
 export interface GFWJWT extends JWT {
   gfw?: {
-    accessToken?: string
+    bearerToken?: string
     refreshToken?: string
   }
 }
@@ -15,14 +16,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     secret: process.env.NEXTAUTH_SECRET,
   })
 
-  if (token?.gfw?.accessToken) {
-
+  if (token?.gfw?.bearerToken) {
+    const client = new GFW({
+      gatewayUrl: GFW_API_GATEWAY,
+      bearerToken: token?.gfw?.bearerToken,
+      refreshToken: token?.gfw?.refreshToken,
+    })
     try {
-      const results = await fetch(`${GFW_API_GATEWAY}/auth/me`, { headers: {
-        'Authorization': `Bearer ${token?.gfw?.accessToken}`
-      } })
-      const data = await results.json()
-      return res.status(results.status).json(data)
+      const response = await client.get(`/auth/me`)
+      const data = await response.json()
+      return res.status(response.status).json(data)
     } catch (e: any) {
       return res.status(400).json({
         status: e.message,
