@@ -1,4 +1,4 @@
-> We have migrated the primary [`nextauthjs/next-auth-example`](https://github.com/nextauthjs/next-auth-example) repository to **TypeScript** and will be using that as our primary example repository going forward. **This repository is deprecated and will most likely archived in the future**.
+> We have migrated the primary [`nextauthjs/next-auth-example`](https://github.com/nextauthjs/next-auth-example) repository to **TypeScript** and will be using that as our primary example repository going forward. **This repository is deprecated**.
 
 <p align="center">
    <br/>
